@@ -20,6 +20,17 @@ SELECT DISTINCT ON (rt.emp_no) rt.emp_no,
 rt.first_name,
 rt.last_name,
 rt.title
+
 INTO unique_titles
 FROM retirement_titles as rt
 ORDER BY emp_no, to_date DESC;
+
+SELECT * from unique_titles;
+
+SELECT COUNT(title), unique_titles.title
+INTO retiring_titles
+FROM unique_titles
+GROUP BY unique_titles.title
+ORDER BY COUNT(title) DESC;
+
+SELECT * FROM retiring_titles;
